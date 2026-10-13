@@ -1,0 +1,17 @@
+name: Synthetic evidence archive probe
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write synthetic evidence
+        run: |
+          mkdir evidence
+          printf '%s\n' '{"synthetic":true,"status":"blocked"}' > evidence/probe.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-transport-probe
+          path: evidence/
+          retention-days: 3
