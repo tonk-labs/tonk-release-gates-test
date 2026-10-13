@@ -1,0 +1,10 @@
+name: Synthetic approval probe
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  approved:
+    environment: release-staging
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Synthetic approval reached; no product or publication.'
